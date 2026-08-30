@@ -1,0 +1,110 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI - GitLab plugin 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: French\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "GitLab"
+msgstr "GitLab"
+
+msgid "GitLab Issues"
+msgstr "Issues GitLab"
+
+msgid "Configuration GitLab"
+msgstr "Configuration GitLab"
+
+msgid "Configuration du connecteur GitLab"
+msgstr "Configuration du connecteur GitLab"
+
+msgid "URL GitLab (Instance Cloud ou Auto-hébergée)"
+msgstr "URL GitLab (Instance Cloud ou Auto-hébergée)"
+
+msgid "Token d'API GitLab (Personal ou Project Access Token)"
+msgstr "Token d'API GitLab (Personal ou Project Access Token)"
+
+msgid "Projet GitLab par défaut (ID ou Chemin)"
+msgstr "Projet GitLab par défaut (ID ou Chemin)"
+
+msgid "Labels par défaut pour les issues créées"
+msgstr "Labels par défaut pour les issues créées"
+
+msgid "Tester la connexion GitLab"
+msgstr "Tester la connexion GitLab"
+
+msgid "Sauvegarder"
+msgstr "Sauvegarder"
+
+msgid "Configuration GitLab mise à jour avec succès."
+msgstr "Configuration GitLab mise à jour avec succès."
+
+msgid "Connexion réussie en tant que : %s (@%s)"
+msgstr "Connexion réussie en tant que : %s (@%s)"
+
+msgid "Échec de connexion : %s"
+msgstr "Échec de connexion : %s"
+
+msgid "Token GitLab manquant."
+msgstr "Token GitLab manquant."
+
+msgid "Issues GitLab associées à ce ticket"
+msgstr "Issues GitLab associées à ce ticket"
+
+msgid "Créer une nouvelle issue GitLab"
+msgstr "Créer une nouvelle issue GitLab"
+
+msgid "Titre de l'issue"
+msgstr "Titre de l'issue"
+
+msgid "Description (Markdown)"
+msgstr "Description (Markdown)"
+
+msgid "Labels (séparés par des virgules)"
+msgstr "Labels (séparés par des virgules)"
+
+msgid "Créer l'issue GitLab"
+msgstr "Créer l'issue GitLab"
+
+msgid "Voir dans GitLab"
+msgstr "Voir dans GitLab"
+
+msgid "Issue"
+msgstr "Issue"
+
+msgid "Projet"
+msgstr "Projet"
+
+msgid "Titre"
+msgstr "Titre"
+
+msgid "Statut GitLab"
+msgstr "Statut GitLab"
+
+msgid "Date de liaison"
+msgstr "Date de liaison"
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Ouverte"
+msgstr "Ouverte"
+
+msgid "Fermée"
+msgstr "Fermée"
+
+msgid "Inconnu"
+msgstr "Inconnu"
+
+msgid "Voulez-vous vraiment délier cette issue de ce ticket ?"
+msgstr "Voulez-vous vraiment délier cette issue de ce ticket ?"
+
+msgid "Issue GitLab #%d créée avec succès !"
+msgstr "Issue GitLab #%d créée avec succès !"
+
+msgid "Liaison avec l'issue GitLab supprimée."
+msgstr "Liaison avec l'issue GitLab supprimée."

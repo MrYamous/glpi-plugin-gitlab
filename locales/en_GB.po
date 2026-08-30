@@ -1,0 +1,110 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI - GitLab plugin 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: English\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "GitLab"
+msgstr "GitLab"
+
+msgid "GitLab Issues"
+msgstr "GitLab Issues"
+
+msgid "Configuration GitLab"
+msgstr "GitLab Configuration"
+
+msgid "Configuration du connecteur GitLab"
+msgstr "GitLab Connector Configuration"
+
+msgid "URL GitLab (Instance Cloud ou Auto-hébergée)"
+msgstr "GitLab URL (Cloud or Self-hosted instance)"
+
+msgid "Token d'API GitLab (Personal ou Project Access Token)"
+msgstr "GitLab API Token (Personal or Project Access Token)"
+
+msgid "Projet GitLab par défaut (ID ou Chemin)"
+msgstr "Default GitLab Project (ID or Path)"
+
+msgid "Labels par défaut pour les issues créées"
+msgstr "Default labels for created issues"
+
+msgid "Tester la connexion GitLab"
+msgstr "Test GitLab Connection"
+
+msgid "Sauvegarder"
+msgstr "Save"
+
+msgid "Configuration GitLab mise à jour avec succès."
+msgstr "GitLab configuration updated successfully."
+
+msgid "Connexion réussie en tant que : %s (@%s)"
+msgstr "Connected successfully as: %s (@%s)"
+
+msgid "Échec de connexion : %s"
+msgstr "Connection failed: %s"
+
+msgid "Token GitLab manquant."
+msgstr "Missing GitLab Token."
+
+msgid "Issues GitLab associées à ce ticket"
+msgstr "GitLab issues linked to this ticket"
+
+msgid "Créer une nouvelle issue GitLab"
+msgstr "Create a new GitLab issue"
+
+msgid "Titre de l'issue"
+msgstr "Issue title"
+
+msgid "Description (Markdown)"
+msgstr "Description (Markdown)"
+
+msgid "Labels (séparés par des virgules)"
+msgstr "Labels (comma separated)"
+
+msgid "Créer l'issue GitLab"
+msgstr "Create GitLab Issue"
+
+msgid "Voir dans GitLab"
+msgstr "View in GitLab"
+
+msgid "Issue"
+msgstr "Issue"
+
+msgid "Projet"
+msgstr "Project"
+
+msgid "Titre"
+msgstr "Title"
+
+msgid "Statut GitLab"
+msgstr "GitLab Status"
+
+msgid "Date de liaison"
+msgstr "Linked Date"
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Ouverte"
+msgstr "Open"
+
+msgid "Fermée"
+msgstr "Closed"
+
+msgid "Inconnu"
+msgstr "Unknown"
+
+msgid "Voulez-vous vraiment délier cette issue de ce ticket ?"
+msgstr "Do you really want to unlink this issue from this ticket?"
+
+msgid "Issue GitLab #%d créée avec succès !"
+msgstr "GitLab issue #%d created successfully!"
+
+msgid "Liaison avec l'issue GitLab supprimée."
+msgstr "Link to GitLab issue removed."
