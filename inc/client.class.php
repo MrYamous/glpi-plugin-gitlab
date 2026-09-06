@@ -57,6 +57,29 @@ class PluginGitlabClient {
     }
 
     /**
+     * Get accessible projects from GitLab
+     *
+     * @param array $params
+     * @return array
+     */
+    public function getProjects(array $params = []): array {
+        $defaultParams = [
+            'membership' => 'true',
+            'simple'     => 'true',
+            'archived'   => 'false',
+            'per_page'   => 100,
+            'order_by'   => 'name',
+            'sort'       => 'asc'
+        ];
+        $params = array_merge($defaultParams, $params);
+        $res = $this->request('GET', '/api/v4/projects', $params);
+        if ($res['http_code'] === 200 && is_array($res['body'])) {
+            return $res['body'];
+        }
+        return [];
+    }
+
+    /**
      * Get project details
      *
      * @param string|int $projectId

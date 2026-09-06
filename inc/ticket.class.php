@@ -109,6 +109,16 @@ class PluginGitlabTicket extends CommonDBTM {
 
         echo "<div class='spaced p-3'>";
 
+        $projects = $client->getProjects();
+        $projectsMap = [];
+        foreach ($projects as $p) {
+            $name = $p['name_with_namespace'] ?? $p['path_with_namespace'] ?? $p['name'];
+            $projectsMap[(string)$p['id']] = $name;
+            if (!empty($p['path_with_namespace'])) {
+                $projectsMap[$p['path_with_namespace']] = $name;
+            }
+        }
+
         // Display existing linked issues
         if (!empty($linkedIssues)) {
             echo "<h4 class='mb-3'><i class='ti ti-brand-gitlab me-2 text-warning'></i>" . __('Issues GitLab associées à ce ticket', 'gitlab') . "</h4>";
@@ -140,9 +150,25 @@ class PluginGitlabTicket extends CommonDBTM {
                 $issueUrl   = htmlspecialchars($link['gitlab_issue_url']);
                 $dateCreation = !empty($link['date_creation']) ? Html::convDate($link['date_creation']) : '-';
 
+                // Determine readable project name
+                $projId = (string)$link['gitlab_project_id'];
+                $projectName = $projectsMap[$projId] ?? null;
+
+                if ($projectName === null) {
+                    $projDetails = $client->getProject($projId);
+                    if ($projDetails) {
+                        $projectName = $projDetails['name_with_namespace'] ?? $projDetails['path_with_namespace'] ?? $projDetails['name'];
+                        $projectsMap[$projId] = $projectName;
+                    } elseif (!empty($link['gitlab_issue_url']) && preg_match('#https?://[^/]+/(.+?)/-/issues/\d+#', $link['gitlab_issue_url'], $matches)) {
+                        $projectName = $matches[1];
+                    } else {
+                        $projectName = $link['gitlab_project_id'];
+                    }
+                }
+
                 echo "<tr>";
                 echo "<td><a href='{$issueUrl}' target='_blank' rel='noopener noreferrer' class='fw-bold text-decoration-none'>#{$link['gitlab_issue_iid']} <i class='ti ti-external-link small'></i></a></td>";
-                echo "<td><code>" . htmlspecialchars($link['gitlab_project_id']) . "</code></td>";
+                echo "<td>" . htmlspecialchars($projectName) . "</td>";
                 echo "<td>{$issueTitle}</td>";
                 echo "<td>{$stateBadge}</td>";
                 echo "<td>{$dateCreation}</td>";
@@ -163,6 +189,8 @@ class PluginGitlabTicket extends CommonDBTM {
                 $initialDescription .= "\n\n---\n\n" . $ticketContent;
             }
 
+            $defaultProjectId = $config['default_project_id'] ?? '';
+
             echo "<div class='card'>";
             echo "<div class='card-header'><h5 class='card-title mb-0'><i class='ti ti-plus me-2'></i>" . __('Créer une nouvelle issue GitLab', 'gitlab') . "</h5></div>";
             echo "<div class='card-body'>";
@@ -172,14 +200,30 @@ class PluginGitlabTicket extends CommonDBTM {
             echo "<input type='hidden' name='tickets_id' value='{$ticketId}'>";
 
             echo "<div class='row mb-3'>";
-            echo "<label class='col-sm-3 col-form-label required'>" . __('Projet GitLab (ID ou Chemin)', 'gitlab') . "</label>";
+            echo "<label class='col-sm-3 col-form-label required'>" . __('Projet GitLab', 'gitlab') . "</label>";
             echo "<div class='col-sm-9'>";
-            echo Html::input('project_id', [
-                'value'    => $config['default_project_id'] ?? '',
-                'required' => 'required',
-                'class'    => 'form-control'
-            ]);
-            echo "<small class='form-hint'>" . __('Exemple : <code>123456</code> ou <code>groupe/nom-projet</code>', 'gitlab') . "</small>";
+
+            if (!empty($projects)) {
+                echo "<select name='project_id' class='form-select' required>";
+                echo "<option value=''>" . __('-- Sélectionner un projet GitLab --', 'gitlab') . "</option>";
+                foreach ($projects as $project) {
+                    $pid   = (string)$project['id'];
+                    $pPath = $project['path_with_namespace'] ?? $project['name_with_namespace'] ?? $pid;
+                    $pName = $project['name_with_namespace'] ?? $pPath;
+                    $selected = ($defaultProjectId == $pid || $defaultProjectId == $pPath) ? 'selected' : '';
+                    echo "<option value='" . htmlspecialchars($pid) . "' {$selected}>" . htmlspecialchars($pName) . " (#{$pid})</option>";
+                }
+                echo "</select>";
+            } else {
+                echo Html::input('project_id', [
+                    'value'       => $defaultProjectId,
+                    'required'    => 'required',
+                    'class'       => 'form-control',
+                    'placeholder' => __('ID ou chemin du projet (ex: mon-groupe/mon-projet)', 'gitlab')
+                ]);
+                echo "<small class='form-hint'>" . __('Exemple : <code>123456</code> ou <code>groupe/nom-projet</code>', 'gitlab') . "</small>";
+            }
+
             echo "</div>";
             echo "</div>";
 

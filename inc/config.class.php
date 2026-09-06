@@ -106,13 +106,36 @@ class PluginGitlabConfig extends CommonDBTM {
 
         // Default project ID / Path
         echo "<tr class='tab_bg_2'>";
-        echo "<td>" . __('Projet GitLab par défaut (ID ou Chemin)', 'gitlab') . "</td>";
+        echo "<td>" . __('Projet GitLab par défaut', 'gitlab') . "</td>";
         echo "<td>";
-        echo Html::input('default_project_id', [
-            'value' => $config['default_project_id'] ?? '',
-            'size'  => 50
-        ]);
-        echo "<br><small class='text-muted'>" . __('Exemple : <code>12345678</code> ou <code>mon-groupe/mon-projet</code>', 'gitlab') . "</small>";
+
+        $projects = [];
+        if (self::isConfigured()) {
+            $client = new PluginGitlabClient();
+            $projects = $client->getProjects();
+        }
+
+        $currentDefault = $config['default_project_id'] ?? '';
+
+        if (!empty($projects)) {
+            echo "<select name='default_project_id' class='form-select' style='max-width: 500px;'>";
+            echo "<option value=''>" . __('-- Aucun projet par défaut (sélection manuelle) --', 'gitlab') . "</option>";
+            foreach ($projects as $project) {
+                $pid   = (string)$project['id'];
+                $pPath = $project['path_with_namespace'] ?? $project['name_with_namespace'] ?? $pid;
+                $pName = $project['name_with_namespace'] ?? $pPath;
+                $selected = ($currentDefault == $pid || $currentDefault == $pPath) ? 'selected' : '';
+                echo "<option value='" . htmlspecialchars($pid) . "' {$selected}>" . htmlspecialchars($pName) . " (#{$pid})</option>";
+            }
+            echo "</select>";
+        } else {
+            echo Html::input('default_project_id', [
+                'value' => $currentDefault,
+                'size'  => 50
+            ]);
+            echo "<br><small class='text-muted'>" . __('Exemple : <code>12345678</code> ou <code>mon-groupe/mon-projet</code>', 'gitlab') . "</small>";
+        }
+
         echo "</td>";
         echo "</tr>";
 
