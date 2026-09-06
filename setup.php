@@ -6,7 +6,7 @@
  * @license MIT
  */
 
-define('PLUGIN_GITLAB_VERSION', '0.1.1');
+define('PLUGIN_GITLAB_VERSION', '0.1.2');
 define('PLUGIN_GITLAB_MIN_GLPI', '10.0.0');
 define('PLUGIN_GITLAB_MAX_GLPI', '11.9.99');
 

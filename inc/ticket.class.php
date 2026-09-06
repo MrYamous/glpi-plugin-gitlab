@@ -120,7 +120,6 @@ class PluginGitlabTicket extends CommonDBTM {
             echo "<th>" . __('Titre', 'gitlab') . "</th>";
             echo "<th>" . __('Statut GitLab', 'gitlab') . "</th>";
             echo "<th>" . __('Date de liaison', 'gitlab') . "</th>";
-            echo "<th class='text-end'>" . __('Action', 'gitlab') . "</th>";
             echo "</tr></thead>";
             echo "<tbody>";
 
@@ -146,19 +145,6 @@ class PluginGitlabTicket extends CommonDBTM {
                 echo "<td>{$issueTitle}</td>";
                 echo "<td>{$stateBadge}</td>";
                 echo "<td>" . Html::convDateTime($link['date_creation']) . "</td>";
-                echo "<td class='text-end'>";
-                echo "<a href='{$issueUrl}' target='_blank' rel='noopener noreferrer' class='btn btn-sm btn-outline-primary me-1'>";
-                echo "<i class='ti ti-external-link'></i> " . __('Voir dans GitLab', 'gitlab');
-                echo "</a>";
-                if ($item->canUpdateItem()) {
-                    echo "<form method='post' action='" . Plugin::getWebDir('gitlab') . "/front/ticket.form.php' style='display:inline-block;' onsubmit='return confirm(\"" . __('Voulez-vous vraiment délier cette issue de ce ticket ?', 'gitlab') . "\");'>";
-                    echo "<input type='hidden' name='action' value='unlink_issue'>";
-                    echo "<input type='hidden' name='link_id' value='{$link['id']}'>";
-                    echo "<input type='hidden' name='tickets_id' value='{$ticketId}'>";
-                    echo "<button type='submit' class='btn btn-sm btn-outline-danger'><i class='ti ti-trash'></i></button>";
-                    Html::closeForm();
-                }
-                echo "</td>";
                 echo "</tr>";
             }
 
