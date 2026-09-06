@@ -46,6 +46,7 @@ if ($action === 'create_issue') {
         global $DB;
         $issue = $res['issue'];
 
+        $now = date('Y-m-d H:i:s');
         // Save issue link in database
         $DB->insert('glpi_plugin_gitlab_tickets', [
             'tickets_id'         => $ticketId,
@@ -53,7 +54,8 @@ if ($action === 'create_issue') {
             'gitlab_issue_iid'   => (int)$issue['iid'],
             'gitlab_issue_id'    => (int)$issue['id'],
             'gitlab_issue_url'   => $issue['web_url'] ?? '',
-            'gitlab_issue_title' => $issue['title'] ?? $title
+            'gitlab_issue_title' => $issue['title'] ?? $title,
+            'date_creation'      => $now
         ]);
 
         // Add a follow-up (suivi) in the GLPI ticket for audit trail

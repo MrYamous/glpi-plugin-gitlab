@@ -54,7 +54,6 @@ function plugin_gitlab_install() {
                 `gitlab_issue_url` VARCHAR(512) NOT NULL,
                 `gitlab_issue_title` VARCHAR(255) NULL,
                 `date_creation` DATETIME NULL DEFAULT NULL,
-                `date_mod` DATETIME NULL DEFAULT NULL,
                 PRIMARY KEY (`id`),
                 KEY `tickets_id` (`tickets_id`),
                 KEY `gitlab_issue_iid` (`gitlab_issue_iid`)

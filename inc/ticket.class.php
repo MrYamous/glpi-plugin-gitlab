@@ -119,7 +119,7 @@ class PluginGitlabTicket extends CommonDBTM {
             echo "<th>" . __('Projet', 'gitlab') . "</th>";
             echo "<th>" . __('Titre', 'gitlab') . "</th>";
             echo "<th>" . __('Statut GitLab', 'gitlab') . "</th>";
-            echo "<th>" . __('Date de liaison', 'gitlab') . "</th>";
+            echo "<th>" . __('Date de création', 'gitlab') . "</th>";
             echo "</tr></thead>";
             echo "<tbody>";
 
@@ -138,13 +138,14 @@ class PluginGitlabTicket extends CommonDBTM {
 
                 $issueTitle = htmlspecialchars($remoteIssue['title'] ?? $link['gitlab_issue_title'] ?? ('Issue #' . $link['gitlab_issue_iid']));
                 $issueUrl   = htmlspecialchars($link['gitlab_issue_url']);
+                $dateCreation = !empty($link['date_creation']) ? Html::convDate($link['date_creation']) : '-';
 
                 echo "<tr>";
                 echo "<td><a href='{$issueUrl}' target='_blank' rel='noopener noreferrer' class='fw-bold text-decoration-none'>#{$link['gitlab_issue_iid']} <i class='ti ti-external-link small'></i></a></td>";
                 echo "<td><code>" . htmlspecialchars($link['gitlab_project_id']) . "</code></td>";
                 echo "<td>{$issueTitle}</td>";
                 echo "<td>{$stateBadge}</td>";
-                echo "<td>" . Html::convDateTime($link['date_creation']) . "</td>";
+                echo "<td>{$dateCreation}</td>";
                 echo "</tr>";
             }
 

@@ -85,8 +85,8 @@ msgstr "Titre"
 msgid "Statut GitLab"
 msgstr "Statut GitLab"
 
-msgid "Date de liaison"
-msgstr "Date de liaison"
+msgid "Date de création"
+msgstr "Date de création"
 
 msgid "Action"
 msgstr "Action"
