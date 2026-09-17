@@ -22,11 +22,11 @@ msgstr "Configuration GitLab"
 msgid "Configuration du connecteur GitLab"
 msgstr "Configuration du connecteur GitLab"
 
-msgid "URL GitLab (Instance Cloud ou Auto-hébergée)"
-msgstr "URL GitLab (Instance Cloud ou Auto-hébergée)"
+msgid "URL GitLab"
+msgstr "URL GitLab"
 
-msgid "Token d'API GitLab (Personal ou Project Access Token)"
-msgstr "Token d'API GitLab (Personal ou Project Access Token)"
+msgid "Token d'API GitLab"
+msgstr "Token d'API GitLab"
 
 msgid "Projet GitLab par défaut (ID ou Chemin)"
 msgstr "Projet GitLab par défaut (ID ou Chemin)"
